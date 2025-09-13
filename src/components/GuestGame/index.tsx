@@ -24,7 +24,7 @@ export const GuestGame = () => {
         [2, 4, 6],
       ];
 
-      for (let logic of winnerLogic) {
+      for (const logic of winnerLogic) {
         const [a, b, c] = logic;
         if (
           blocks[a] !== null &&

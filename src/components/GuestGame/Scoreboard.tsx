@@ -7,7 +7,6 @@ import { SpecialButton } from "../shared/Button";
 import { Button1 } from "@/assets";
 import { LoadingCircle } from "../shared/LoadingCircle";
 import { showErrorDialog } from "../shared/ErrorDialog";
-import { useRouter } from "next/navigation";
 
 type ScoreboardProps = {
   gameUuid: string;
@@ -17,7 +16,6 @@ export const Scoreboard = ({ gameUuid }: ScoreboardProps) => {
   const [scoreData, setScoreData] = useState<GameRoundsScoreResponse | null>(
     null
   );
-  const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
       try {

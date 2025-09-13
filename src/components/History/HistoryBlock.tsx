@@ -77,9 +77,6 @@ rounds.forEach((r) => {
   else if (r === 0 || r === "0") playerScores.ties++;
 });
 
-
-    const drawScore =  rounds?.filter((r) => r === "0" || r === null).length || 0;
- console.log(rounds)
  return (
   <div className="relative p-4 rounded-md shadow-sm bg-beige overflow-hidden">
     {renderWinner()}

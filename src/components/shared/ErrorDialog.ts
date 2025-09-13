@@ -1,5 +1,4 @@
 // showErrorDialog.ts
-import { error } from 'console';
 import { toast } from 'sonner';
 import Swal from 'sweetalert2';
 

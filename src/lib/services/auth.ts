@@ -1,12 +1,9 @@
 "use server";
 import { cookies } from "next/headers";
 import axios from "axios"
-import { Cookie } from "next/font/google";
 import { RegisterUserData } from "../schemas/registerUserSchema";
 import { UserLoginData, UserResponseData } from "../schemas/userLoginSchema";
 import { backend } from "../server";
-import { showErrorDialog } from "@/components/shared/ErrorDialog";
-;
 
 export const login = async (values: UserLoginData) => {
   try {

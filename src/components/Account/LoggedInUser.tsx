@@ -53,7 +53,8 @@ const [loading,setLoading] =useState(false)
 
       run();
     }
-  }, [isAuthenticated]);
+}, [isAuthenticated, initializeAuth]);
+
 
   const handleLogout = async () => {
     setLoading(true)

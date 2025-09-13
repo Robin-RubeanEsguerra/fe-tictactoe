@@ -4,29 +4,13 @@ import { Blocks } from "./Blocks";
 import { Chu, Juberto } from "@/assets";
 import { PlayerBlock } from "./PlayerBlock";
 import { Label } from "../shared/Label";
-import { useParams } from "next/navigation";
-import { Scoreboard } from "./Scoreboard";
-import { is } from "zod/v4/locales";
 import { WinnerGuestDialog } from "./WinnerGuestPopup/WinnerGuestDialog";
 
-type Move = {
-  index: number;
-  player: number;
-};
-
 export const GuestGame = () => {
-  const params = useParams();
-  const gameUuid = Array.isArray(params.gameUuid)
-    ? params.gameUuid[0]
-    : params.gameUuid;
-  const gameRoundUuid = Array.isArray(params.gameRoundUuid)
-    ? params.gameRoundUuid[0]
-    : params.gameRoundUuid;
 
   const [winnerDialog, setWinnerDialog] = useState(false);
   const [blocks, setBlocks] = useState(Array(9).fill(null));
   const [isXTurn, setIsXTurn] = useState(true);
-  const [moveStore, setMoveStore] = useState<Move[]>([]);
   const checkWinner = useMemo(() => {
     return () => {
       const winnerLogic = [
@@ -80,7 +64,6 @@ export const GuestGame = () => {
       });
 
       setIsXTurn((prevTurn) => !prevTurn);
-      setMoveStore((prev) => [...prev, { index, player: isXTurn ? 1 : 2 }]);
     },
     [blocks, isXTurn]
   );
@@ -88,7 +71,6 @@ export const GuestGame = () => {
   const handleReset = useCallback(() => {
     setBlocks(Array(9).fill(null));
     setIsXTurn(true);
-    setMoveStore([]);
   }, []);
 
   return (
@@ -107,7 +89,6 @@ export const GuestGame = () => {
           <Label className="text-6xl md:text-7xl" variant="primary">
             Tic-Tac-Toe
           </Label>
-          {gameUuid && <Scoreboard gameUuid={gameUuid} />}
         </div>
       </div>
       <div className="flex justify-center">

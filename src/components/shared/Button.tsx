@@ -1,4 +1,4 @@
-  import { Button1, Button2 } from "@/assets";
+  import {  Button2 } from "@/assets";
   import Image, { StaticImageData } from "next/image";
 
 

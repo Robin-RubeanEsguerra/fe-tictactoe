@@ -1,14 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { MenuButton, SpecialButton } from "../shared/Button";
+import { MenuButton,  } from "../shared/Button";
 import { AccountDialog } from "../Account/AccountDialog";
 import { HistoryDialog } from "../History/HistoryDialog";
 import { Title } from "./Title";
-import { Button1 } from "@/assets";
 import { createGameInstance } from "@/lib/services/gameInstance";
 import { createGameRound } from "@/lib/services/gameRound";
-import { LoggedInUser } from "../Account/LoggedInUser";
 import { UseAuthStore } from "@/lib/store/use-logged-in-user";
 import Swal from "sweetalert2";
 
@@ -56,6 +54,7 @@ export const Homepage = () => {
         <div className="flex justify-center">
           <div className="-space-y-8 md:space-y-0 lg:space-y-4 flex flex-col ">
             <MenuButton onClick={handleGameInstance}>Start!</MenuButton>
+              <MenuButton ><Link href="/guest-game">Guest Game</Link></MenuButton>
             <AccountDialog />
             <HistoryDialog />
           </div>

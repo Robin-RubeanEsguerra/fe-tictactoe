@@ -7,7 +7,6 @@ import { Label } from "../shared/Label";
 import { useParams } from "next/navigation";
 import { WinnerDialog } from "./WinnerPopup/WinnerDialog";
 import { Scoreboard } from "./Scoreboard";
-import { is } from "zod/v4/locales";
 
 type Move = {
   index: number;
@@ -39,7 +38,7 @@ export const GameArea = () => {
         [2, 4, 6],
       ];
 
-      for (let logic of winnerLogic) {
+      for (const logic of winnerLogic) {
         const [a, b, c] = logic;
         if (
           blocks[a] !== null &&
@@ -86,7 +85,7 @@ export const GameArea = () => {
       setIsXTurn((prevTurn) => !prevTurn);
       setMoveStore((prev) => [...prev, { index, player: isXTurn ? 1 : 2 }]);
     },
-    [blocks, isXTurn]
+    [blocks, isXTurn,gameRoundUuid]
   );
 
   const handleReset = useCallback(() => {

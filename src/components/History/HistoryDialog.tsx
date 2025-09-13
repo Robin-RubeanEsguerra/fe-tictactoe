@@ -1,6 +1,5 @@
 "use client";
-import { Button1 } from "@/assets";
-import { MenuButton, SpecialButton } from "../shared/Button";
+import { MenuButton, } from "../shared/Button";
 import {
   Dialog,
   DialogTrigger,
@@ -39,7 +38,7 @@ export const HistoryDialog = () => {
         const data = await getGameHistory();
         setGames(data);
         console.log(data);
-      } catch (error: unknown) {
+      } catch () {
         setError("Failed to load game history.");
         Swal.fire({
           title: "Oops...",
@@ -53,7 +52,7 @@ export const HistoryDialog = () => {
     };
 
     fetchData();
-  }, [isAuthenticated]);
+  }, [isAuthenticated,initializeAuth]);
 
   return (
     <Dialog>

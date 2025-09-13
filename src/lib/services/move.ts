@@ -3,8 +3,6 @@
 import { cookies } from "next/headers";
 import axios from "axios";
 import { backend } from "../server";
-import { GameInstanceData } from "../schemas/gameInstanceSchema";
-import { MoveData } from "../schemas/moveSchema";
 
 type Move = {
   index: number;

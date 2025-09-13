@@ -36,7 +36,7 @@ export const WinnerGuestDialog = ({
           </DialogTitle>
           <DialogDescription className="text-center text-md">
             {winner === "tie" ? (
-              <Label className="text-3xl">It's a tie!</Label>
+              <Label className="text-3xl">It`&apos;s a tie!</Label>
             ) : (
               <Label className="text-3xl" variant="secondary">
                 Player{" "}

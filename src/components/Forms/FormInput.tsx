@@ -1,23 +1,28 @@
 import React from "react";
-import { FieldError, UseFormRegister } from "react-hook-form";
+import {
+  FieldError,
+  UseFormRegister,
+  Path,
+  FieldValues,
+} from "react-hook-form";
 
-interface FormImputProps {
-  name: string;
+interface FormInputProps<T extends FieldValues> { 
+  name: Path<T>;
   label: string;
   type?: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<T>;
   error?: FieldError;
   className?: string;
 }
 
-const FormImput: React.FC<FormImputProps> = ({
+const FormInput = <T extends FieldValues>({
   name,
   label,
   type = "text",
   register,
   error,
   className = "",
-}) => {
+}: FormInputProps<T>) => {
   return (
     <div className={className}>
       <label htmlFor={name} className="block text-md font-medium mb-1">
@@ -35,5 +40,4 @@ const FormImput: React.FC<FormImputProps> = ({
   );
 };
 
-export default FormImput;
-
+export default FormInput;

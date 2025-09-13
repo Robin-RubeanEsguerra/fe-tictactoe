@@ -8,12 +8,11 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-  DialogClose,
 } from "@/components/shared/Dialog";
-import { Button, SpecialButton } from "../../shared/Button";
+import {  SpecialButton } from "../../shared/Button";
 import { createMoves } from "@/lib/services/move";
 import { createGameRound, endGameRound } from "@/lib/services/gameRound";
-import { Button1, Chu, Juberto } from "@/assets";
+import { Button1,  } from "@/assets";
 import { WinnerDisplay } from "./WinnerDisplay";
 import { Label } from "../../shared/Label";
 import {
@@ -139,7 +138,7 @@ export const WinnerDialog = ({
               {gameInstance?.status === "completed" ? (
                 <DialogDescription className="text-center text-md ">
                   {gameInstance.winner === "tie" ? (
-                    <Label className="text-3xl">It's a tie!</Label>
+                    <Label className="text-3xl">It`&apos;s a tie!</Label>
                   ) : (
                     <>
                       <Label className="text-3xl " variant="secondary">
@@ -152,7 +151,7 @@ export const WinnerDialog = ({
               ) : (
                 <DialogDescription className="text-center text-md ">
                   {winner === "tie" ? (
-                    <Label className="text-3xl">It's a tie!</Label>
+                    <Label className="text-3xl">It`&apos;s a tie!</Label>
                   ) : (
                     <>
                       <Label className="text-3xl " variant="secondary">

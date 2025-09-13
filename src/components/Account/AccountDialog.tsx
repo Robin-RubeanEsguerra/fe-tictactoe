@@ -1,7 +1,6 @@
 "use client";
 
-import { Button1, Button2 } from "@/assets";
-import { MenuButton, SpecialButton } from "../shared/Button";
+import { MenuButton,  } from "../shared/Button";
 import {
   Dialog,
   DialogTrigger,
@@ -18,7 +17,7 @@ import { LoggedInUser } from "./LoggedInUser";
 export const AccountDialog = () => {
   const { setAccountDialogMdodal, isAccountDialogModal } =
     UseAccountDialogStore();
-    const { isAuthenticated, initializeAuth} = UseAuthStore();
+    const { isAuthenticated} = UseAuthStore();
     return (
     <Dialog open={isAccountDialogModal} onOpenChange={setAccountDialogMdodal}>
       <DialogTrigger asChild>

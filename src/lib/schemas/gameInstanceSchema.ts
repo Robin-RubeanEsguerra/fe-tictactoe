@@ -93,7 +93,7 @@ const GameSchema = z.object({
   winner: z.union([z.string(), z.number()]),
 });
 
-const ResponseSchema = z.object({
+export const ResponseSchema = z.object({
   items: z.array(GameSchema),
 });
 

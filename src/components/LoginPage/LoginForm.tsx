@@ -10,7 +10,7 @@ import FormImput from "../Forms/FormInput";
 import { SpecialButton } from "../shared/Button";
 import { Button1 } from "@/assets";
 import Cookies from "js-cookie";
-import { showErrorDialog, showErrorWithToast } from "../shared/ErrorDialog";
+import { showErrorWithToast } from "../shared/ErrorDialog";
 import { LoadingCircle } from "../shared/LoadingCircle";
 import { useState } from "react";
 import { UseAuthStore } from "@/lib/store/use-logged-in-user";

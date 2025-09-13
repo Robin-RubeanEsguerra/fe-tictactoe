@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const moveSchema = z.object({
+export const moveSchema = z.object({
   gameRoundUuid: z.string().uuid(),
   turnNumber: z.number().int().positive(),
   player: z.string(), // or z.enum(["1", "2"]) if you want to restrict player values

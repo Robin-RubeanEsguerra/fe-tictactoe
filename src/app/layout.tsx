@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { Toaster } from "sonner";
 import { LayoutPage } from "@/components/Layout";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+
+
 
 export const metadata: Metadata = {
   title: "Tic Tac Toe",
@@ -27,10 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Jua&display=swap"
-          rel="stylesheet"
-        ></link>
+       {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+<link
+  href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Jua&display=swap"
+  rel="stylesheet"
+/>
+
       </head>
       <body className={`h-screen`}>
         <Toaster richColors position="top-right" />

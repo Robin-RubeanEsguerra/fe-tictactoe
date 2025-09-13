@@ -55,7 +55,7 @@ const gameScoreSchema = z.object({
   winner: z.number().int().optional(), // Optional because last round has no winner yet
 });
 
-const gameRoundsResponseSchema = z.object({
+export const gameRoundsResponseSchema = z.object({
   player1Score: z.number().int(),
   player2Score: z.number().int(),
   draws: z.number().int(),

@@ -5,6 +5,7 @@ import { Cookie } from "next/font/google";
 import { RegisterUserData } from "../schemas/registerUserSchema";
 import { UserLoginData, UserResponseData } from "../schemas/userLoginSchema";
 import { backend } from "../server";
+import { showErrorDialog } from "@/components/shared/ErrorDialog";
 ;
 
 export const login = async (values: UserLoginData) => {
@@ -53,14 +54,12 @@ export const registerUser = async (values: RegisterUserData) => {
       let errorMsg = "Register failed";
       const errorData = await response.json();
       errorMsg = errorData.message || errorMsg;
-      console.log(errorData);
       throw new Error(errorMsg);
     }
 
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Register error:", error);
     throw error;
   }
 };

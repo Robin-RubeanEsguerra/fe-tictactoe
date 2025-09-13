@@ -1,6 +1,6 @@
 "use client";
 import { Button1 } from "@/assets";
-import { SpecialButton } from "../shared/Button";
+import { MenuButton, SpecialButton } from "../shared/Button";
 import {
   Dialog,
   DialogTrigger,
@@ -25,8 +25,6 @@ export const HistoryDialog = () => {
 
   const { isAuthenticated, initializeAuth } = UseAuthStore();
 
-  // Initialize auth once
-  
   useEffect(() => {
     initializeAuth();
 
@@ -60,7 +58,7 @@ export const HistoryDialog = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <SpecialButton backgroundImage={Button1}>History</SpecialButton>
+        <MenuButton>History</MenuButton>
       </DialogTrigger>
 
       <DialogContent>
@@ -78,7 +76,7 @@ export const HistoryDialog = () => {
           {loading && <LoadingCircle />}
 
           {!loading && !isAuthenticated && (
-            <p className="text-red-500">Please login to view your history.</p>
+            < Label className="text-lg my-4 italic">Please login to view your history.</Label>
           )}
 
           {!loading && error && <p className="text-red-500">{error}</p>}

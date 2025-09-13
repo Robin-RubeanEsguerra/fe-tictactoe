@@ -23,6 +23,7 @@ import {
 import { EndGameInstanceData } from "@/lib/schemas/gameInstanceSchema";
 import { useState } from "react";
 import { LoadingCircle } from "../../shared/LoadingCircle";
+import { showErrorDialog } from "@/components/shared/ErrorDialog";
 type Move = {
   index: number;
   player: number;
@@ -79,7 +80,7 @@ export const WinnerDialog = ({
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      showErrorDialog({ error: error as Error });
     }
   };
 
@@ -142,9 +143,8 @@ export const WinnerDialog = ({
                   ) : (
                     <>
                       <Label className="text-3xl " variant="secondary">
-                        Player{" "}
-                        <span className="font-bold">{winner}</span>{" "}
-                        is the Winner!
+                        Player <span className="font-bold">{winner}</span> is
+                        the Winner!
                       </Label>
                     </>
                   )}
@@ -166,8 +166,14 @@ export const WinnerDialog = ({
               )}
 
               {gameInstance?.status === "completed" ? (
-                <WinnerDisplay winner={gameInstance.winner === "tie" ? "tie" : Number(gameInstance.winner)} />
-              ):(
+                <WinnerDisplay
+                  winner={
+                    gameInstance.winner === "tie"
+                      ? "tie"
+                      : Number(gameInstance.winner)
+                  }
+                />
+              ) : (
                 <WinnerDisplay winner={winner} />
               )}
             </DialogHeader>
@@ -206,14 +212,14 @@ export const WinnerDialog = ({
             )}
 
             {onReset && (
-              <DialogFooter className="mt-4 flex flex-row">
+              <DialogFooter className="gap-0 h-fit flex flex-row">
                 {gameInstance?.status === "completed" ? (
                   <SpecialButton
                     backgroundImage={Button1}
                     onClick={() => {
                       handleNewGame();
                     }}
-                    className="w-full text-[20px] h-20"
+                    className="w-full text-[30px] h-20"
                   >
                     New Game
                   </SpecialButton>
@@ -224,34 +230,32 @@ export const WinnerDialog = ({
                       startNewRound();
                       onReset();
                     }}
-                    className="w-full text-[20px] h-20"
+                    className="w-full text-[30px] h-20"
                   >
                     New Round
                   </SpecialButton>
                 )}
-                {gameInstance?.status === "completed" ?(
+                {gameInstance?.status === "completed" ? (
                   <SpecialButton
-                  onClick={() => {
-                    window.location.href = `/`;
-                  }}
-                  backgroundImage={Button1}
-                  className="w-full text-[20px] h-20"
-                >
-                  Home
-                </SpecialButton>
-                ):(
+                    onClick={() => {
+                      window.location.href = `/`;
+                    }}
+                    backgroundImage={Button1}
+                    className="w-full text-[30px] h-20"
+                  >
+                    Home
+                  </SpecialButton>
+                ) : (
                   <SpecialButton
-                  onClick={() => {
-                    handleEndGameInstance();
-                  }}
-                  backgroundImage={Button1}
-                  className="w-full text-[20px] h-20"
-                >
-                  End Game
-                </SpecialButton>
-                )
-
-                }
+                    onClick={() => {
+                      handleEndGameInstance();
+                    }}
+                    backgroundImage={Button1}
+                    className="w-full text-[30px] h-20"
+                  >
+                    End Game
+                  </SpecialButton>
+                )}
               </DialogFooter>
             )}
           </div>

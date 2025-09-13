@@ -5,15 +5,16 @@ import { Chu, Juberto } from "@/assets";
 import { PlayerBlock } from "./PlayerBlock";
 import { Label } from "../shared/Label";
 import { useParams } from "next/navigation";
-import { WinnerDialog } from "./WinnerPopup/WinnerDialog";
 import { Scoreboard } from "./Scoreboard";
 import { is } from "zod/v4/locales";
+import { WinnerGuestDialog } from "./WinnerGuestPopup/WinnerGuestDialog";
 
 type Move = {
   index: number;
   player: number;
 };
-export const GameArea = () => {
+
+export const GuestGame = () => {
   const params = useParams();
   const gameUuid = Array.isArray(params.gameUuid)
     ? params.gameUuid[0]
@@ -70,11 +71,6 @@ export const GameArea = () => {
 
   const handleClick = useCallback(
     async (index: number) => {
-      if (!gameRoundUuid) {
-        alert("Game Round UUID not found in URL");
-        return;
-      }
-
       if (blocks[index] !== null) return;
 
       setBlocks((prevState) => {
@@ -97,15 +93,12 @@ export const GameArea = () => {
 
   return (
     <div className=" gap-4 w-full  py-4 ">
-      {gameRoundUuid && gameUuid && (
-        <WinnerDialog
-          gameUuid={gameUuid}
+      {winnerInfo && (
+        <WinnerGuestDialog
           open={winnerDialog}
-          gameRoundUuid={gameRoundUuid}
           winner={winnerInfo?.winner ?? ""}
           onClose={() => setWinnerDialog(false)}
           onReset={handleReset}
-          moves={moveStore}
         />
       )}
 

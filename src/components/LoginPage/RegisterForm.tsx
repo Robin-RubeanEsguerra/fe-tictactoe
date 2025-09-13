@@ -1,29 +1,28 @@
-"use client"
+"use client";
 import {
   RegisterUserData,
   registerUserSchema,
 } from "@/lib/schemas/registerUserSchema";
 import { registerUser } from "@/lib/services/auth";
-import { UseAccountDialogStore } from "@/lib/store/use.account.dialog";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import FormInput from "../Forms/FormInput";
 import { useState } from "react";
-import { set } from "zod";
 import { Button, SpecialButton } from "../shared/Button";
 import { LoadingCircle } from "../shared/LoadingCircle";
 import { Button1 } from "@/assets";
+import { ZodError } from "zod";
 
 export const RegisterForm = () => {
-    const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
+    getValues,
   } = useForm<RegisterUserData>({
-    resolver: zodResolver(registerUserSchema),
     defaultValues: {
       username: "",
       email: "",
@@ -32,20 +31,25 @@ export const RegisterForm = () => {
     },
   });
 
-  const onSubmit = async (values: RegisterUserData) => {
-    setLoading(true)
+  const onSubmit = async () => {
+    setLoading(true);
+    const formValues = getValues();
+
     try {
-      await registerUser(values);
-       toast.success("Account made successfully! Please Proceed to Login");
-        setLoading
-       reset();
+      const parsed = registerUserSchema.parse(formValues);
+      await registerUser(parsed);
+      toast.success("Account made successfully! Please proceed to login.");
+      reset();
     } catch (error) {
-      if (error instanceof Error) {
+      setLoading(false)
+      if (error instanceof ZodError) {
+        error.issues.forEach((issue) => {
+          toast.error(issue.message);
+        });
+      } else if (error instanceof Error) {
         toast.error(error.message);
-        setLoading(false)
       } else {
         toast.error("An unexpected error occurred");
-        setLoading(false)
       }
     }
   };
@@ -61,34 +65,36 @@ export const RegisterForm = () => {
           label="Username"
           register={register}
           error={errors.username}
-          />
-      <FormInput
+        />
+        <FormInput
           name="email"
           label="Email"
           register={register}
           error={errors.email}
         />
-       <FormInput
+        <FormInput
           name="password"
           label="Password"
           type="password"
           register={register}
           error={errors.password}
         />
-       <FormInput
+        <FormInput
           name="confirmPassword"
           label="Confirm Password"
           type="password"
           register={register}
           error={errors.confirmPassword}
-          />
-         <div className="flex justify-center">
-           <SpecialButton
+        />
+        <div className="flex justify-center">
+          <SpecialButton
             className="text-[25px] w-full py-1"
-            type="submit" backgroundImage={Button1}    >
-                {loading ? <LoadingCircle/> : "Register"}
-           </SpecialButton>
-         </div>
+            type="submit"
+            backgroundImage={Button1}
+          >
+            {loading ? <LoadingCircle /> : "Register"}
+          </SpecialButton>
+        </div>
       </form>
     </div>
   );

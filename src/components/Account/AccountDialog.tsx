@@ -1,7 +1,7 @@
 "use client";
 
 import { Button1, Button2 } from "@/assets";
-import { SpecialButton } from "../shared/Button";
+import { MenuButton, SpecialButton } from "../shared/Button";
 import {
   Dialog,
   DialogTrigger,
@@ -22,7 +22,7 @@ export const AccountDialog = () => {
     return (
     <Dialog open={isAccountDialogModal} onOpenChange={setAccountDialogMdodal}>
       <DialogTrigger asChild>
-       {isAuthenticated ? <LoggedInUser /> : <SpecialButton  backgroundImage={Button1}>Accounts</SpecialButton> }
+       {isAuthenticated ? <LoggedInUser /> : <MenuButton >Accounts</MenuButton> }
       </DialogTrigger>
       <DialogContent showCloseButton={false} className="gap-0" >
         <DialogHeader className=" gap-0">

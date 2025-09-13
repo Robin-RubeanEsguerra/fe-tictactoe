@@ -6,6 +6,8 @@ import Button2 from "./images/button_2.png";
 import BaguetteCross from "./images/cross.png";
 import Chu from './images/chu.png'
 import Juberto from './images/juberto.png'
+import BaguetteFooter from "./images/baguette_footer.png";
+import DonutHeader from "./images/donut_header.png";
 export {
     CatDonut1,
     BaguetteCol,
@@ -15,4 +17,6 @@ export {
     BaguetteCross,
     Chu,
     Juberto,
+    BaguetteFooter,
+    DonutHeader
 }

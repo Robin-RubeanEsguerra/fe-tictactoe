@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { UserResponseData } from '../schemas/userLoginSchema';
-import { backend } from '../server';
+import { next_private } from '../server';
 
 export const serverHealthCheck = async (accessToken: string): Promise<UserResponseData> => {
   const response = await axios.get<UserResponseData>(
-    `http://localhost:8000/auth/test-user`,
+    `${next_private}/auth/test-user`,  
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,

@@ -15,7 +15,7 @@ import {
   DialogTrigger,
 } from "../shared/Dialog";
 
-import { SpecialButton } from "../shared/Button";
+import { MenuButton, SpecialButton } from "../shared/Button";
 import { Label } from "../shared/Label";
 
 import { logoutUser } from "@/lib/services/auth";
@@ -46,7 +46,6 @@ const [loading,setLoading] =useState(false)
 
           const userData = await serverHealthCheck(accessToken);
           setUser(userData);
-          console.log("Client health check success", userData);
         } catch (e) {
           handleErrorWithToast(e);
         }
@@ -73,7 +72,7 @@ const [loading,setLoading] =useState(false)
   return (
     <Dialog open={isProfileDialogModal} onOpenChange={setProfileDialogModal}>
       <DialogTrigger asChild>
-        <SpecialButton backgroundImage={Button1}>Profile</SpecialButton>
+        <MenuButton>Profile</MenuButton>
       </DialogTrigger>
 
       <DialogContent>
@@ -112,7 +111,7 @@ const [loading,setLoading] =useState(false)
         <DialogFooter className="flex justify-center mt-6">
           <SpecialButton
             backgroundImage={Button1}
-            className="text-[25px] py-4 w-full"
+            className="text-[25px] h-[50px] w-full"
             onClick={handleLogout}
           >
            {loading ? <LoadingCircle/>:" Logout"}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SpecialButton } from "../shared/Button";
+import { MenuButton, SpecialButton } from "../shared/Button";
 import { AccountDialog } from "../Account/AccountDialog";
 import { HistoryDialog } from "../History/HistoryDialog";
 import { Title } from "./Title";
@@ -23,8 +23,17 @@ export const Homepage = () => {
         icon: "error",
         confirmButtonText: "Ok",
       });
-    };
+      return;
+    }
     try {
+      Swal.fire({
+        title: "Preparing game zone...",
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
       const gameInstance = await createGameInstance();
       const gameRound = await createGameRound({
         gameUuid: gameInstance.gameUuid,
@@ -41,17 +50,12 @@ export const Homepage = () => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="space-y-20 md:space-y-16">
+    <div className=" flex items-center justify-center lg:mt-6">
+      <div className="space-y-14 md:space-y-16">
         <Title />
         <div className="flex justify-center">
-          <div className="flex flex-col space-y-2">
-            <SpecialButton
-              onClick={handleGameInstance}
-              backgroundImage={Button1}
-            >
-              Start!
-            </SpecialButton>
+          <div className="-space-y-8 md:space-y-0 lg:space-y-4 flex flex-col ">
+            <MenuButton onClick={handleGameInstance}>Start!</MenuButton>
             <AccountDialog />
             <HistoryDialog />
           </div>

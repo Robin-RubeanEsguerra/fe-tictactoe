@@ -38,7 +38,7 @@ export const HistoryDialog = () => {
         const data = await getGameHistory();
         setGames(data);
         console.log(data);
-      } catch () {
+      } catch {
         setError("Failed to load game history.");
         Swal.fire({
           title: "Oops...",
